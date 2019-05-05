@@ -39,7 +39,7 @@ namespace ShopStore.Model.Data
 
         public async Task<Product> GetProduct(int id)
         {
-            var product = await _context.Products.Where(p => p.ProductId == id).FirstOrDefaultAsync();
+            var product = await _context.Products.Where(p => p.ProductId == id).Include(p=>p.Brand).Include(c=>c.Category).FirstOrDefaultAsync();
             return product;
         }
 
